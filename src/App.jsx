@@ -3,9 +3,12 @@ import Login from './pages/Login'
 import Dashboard from './pages/Dashboard'
 import { AuthProvider } from './context/AuthContext'
 import ProtectedRoute from './components/protectedRoute'
+import ErrorBoundary from './components/ErrorBoundary';
+import UserManagement from './pages/UserManagement'
 
 function App() {
   return (
+    <ErrorBoundary>
     <AuthProvider>
       <Router>
         <Routes>
@@ -14,14 +17,24 @@ function App() {
             path="/dashboard" 
             element={
               <ProtectedRoute requiredRole="admin">
+                <UserManagement/>
                 <Dashboard />
               </ProtectedRoute>
             } 
           />
-          {/* Agregá otras rutas protegidas si querés */}
+          <Route 
+            path="/usuarios" 
+            element={
+              <ProtectedRoute requiredRole="admin">
+                <UserManagement/>
+                <Dashboard />
+              </ProtectedRoute>
+            } 
+          />
         </Routes>
       </Router>
     </AuthProvider>
+    </ErrorBoundary>
   )
 }
 

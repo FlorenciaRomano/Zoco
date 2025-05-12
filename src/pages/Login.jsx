@@ -38,8 +38,54 @@ const Login = () => {
         try {
             // Simulación de usuarios
             const users = [
-                { email: 'admin@zoco.com', password: 'admin123', role: 'admin' },
-                { email: 'user@zoco.com', password: 'user123', role: 'user' }
+                {
+                    email: 'admin@zoco.com',
+                    password: 'admin123',
+                    role: 'admin',
+                    name: 'Juan Pérez',
+                    address: 'Av. Siempre Viva 123',
+                    phone: '123456789',
+                    studies: 'Ingeniería Informática',
+                    experience: '3 años en desarrollo web',
+                    isAuthenticated: true,
+                    isAllowed: true,
+                },
+                {
+                    email: 'user@zoco.com',
+                    password: 'user123',
+                    role: 'user',
+                    address: 'Av. Avenida 456',
+                    phone: '353456789',
+                    name: 'Ana Gómez',
+                    studies: 'Ingeniería Informática',
+                    experience: '2 años en desarrollo web',
+                    isAllowed: true,
+                }
+                ,
+                {
+                    email: 'user@zoco.com',
+                    password: 'user123',
+                    role: 'user',
+                    address: 'Av. Avenida 456',
+                    phone: '353456789',
+                    name: 'Ana Gómez',
+                    studies: 'Ingeniería Informática',
+                    experience: '2 años en desarrollo web',
+                    isAllowed: true,
+                }
+                ,
+                ,
+                {
+                    email: 'userNoAllowed@zoco.com',
+                    password: 'user123',
+                    role: 'user',
+                    address: 'Av. Avenida 456',
+                    phone: '353456789',
+                    name: 'Usuario No Permitido',
+                    studies: 'Ingeniería Informática',
+                    experience: '2 años en desarrollo web',
+                    isAllowed: false,
+                }
             ]
 
             const foundUser = users.find(
@@ -48,6 +94,10 @@ const Login = () => {
 
             if (foundUser) {
                 const token = btoa(JSON.stringify(foundUser))
+                console.log('foundUser', foundUser)
+                // Guardar el usuario en el localStorage
+                localStorage.setItem('user', JSON.stringify(foundUser))
+
                 login(token)
 
                 navigate('/dashboard')
@@ -116,7 +166,7 @@ const Login = () => {
                     <p>Usuarios</p>
                     <ul className='list-disc'>
                         <li>admin@zoco.com / admin123</li>
-                        <li>user1@zoco.com / user123</li>
+                        <li>user@zoco.com / user123</li>
                     </ul>
                 </div>
             </form>

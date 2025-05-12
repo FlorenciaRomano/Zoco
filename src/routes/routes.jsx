@@ -2,6 +2,7 @@ import { Routes, Route, Navigate } from 'react-router-dom'
 import Login from '../pages/Login'
 import Dashboard from '../pages/Dashboard'
 import PrivateRoute from './privateRoutes'
+import UserManagement from '../pages/UserManagement'
 
 const AppRouter = () => {
   return (
@@ -15,7 +16,7 @@ const AppRouter = () => {
           </PrivateRoute>
         } 
       />
-      <Route path="*" element={<Navigate to="/" />} />
+      <Route path="/usuarios" element={<UserManagement/>} />
     </Routes>
   )
 }
